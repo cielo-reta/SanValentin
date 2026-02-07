@@ -3,278 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi San Valentín 💖</title>
-
-<!-- Fuentes -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-
-<!-- Leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<title>Mi San Valentín 💖</title>
 
 <style>
-body{
+*{
   margin:0;
-  font-family:'Playfair Display', serif;
-  background:linear-gradient(180deg,#ffd6e8,#fff1d6);
-  overflow-x:hidden;
-  color:#7a2e4a;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Georgia', cursive;
 }
 
-/* Corazones cayendo */
+body{
+  background: linear-gradient(135deg,#f8b6c8,#fbe4c9);
+  overflow:hidden;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* corazones */
 .heart{
   position:fixed;
-  font-size:20px;
-  color:rgba(255,105,180,.6);
+  top:-10px;
+  color:rgba(255,105,180,0.6);
   animation:fall linear infinite;
 }
 @keyframes fall{
-  from{transform:translateY(-10vh);}
-  to{transform:translateY(110vh);}
+  to{ transform:translateY(110vh); }
 }
 
-/* Sobre */
+/* sobre */
 .envelope{
-  width:320px;
-  margin:40px auto;
-  background:#fffaf3;
-  border-radius:20px;
-  box-shadow:0 15px 40px rgba(212,175,55,.4);
-  cursor:pointer;
-  overflow:hidden;
-  border:3px solid #d4af37;
-}
-
-.letter{
-  max-height:0;
-  overflow:hidden;
-  transition:1s;
-  padding:0 20px;
-  text-align:center;
-  font-family:'Great Vibes', cursive;
-  font-size:26px;
-}
-
-.envelope.open .letter{
-  max-height:800px;
+  width:90%;
+  max-width:360px;
+  background:#fff;
+  border-radius:15px;
   padding:20px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+  animation:open 1.5s ease;
 }
 
-/* Botones */
+@keyframes open{
+  from{ transform:scale(.8); opacity:0;}
+  to{ transform:scale(1); opacity:1;}
+}
+
+/* carta */
+.letter{
+  color:#a14c6d;
+  font-size:15px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+/* botones */
 .buttons{
-  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:15px;
 }
 
-.buttons button{
-  font-size:22px;
-  padding:12px 28px;
+button{
+  padding:10px 18px;
   border:none;
-  border-radius:30px;
+  border-radius:20px;
+  font-size:16px;
   cursor:pointer;
-  margin:10px;
+}
+
+#yes{
+  background:linear-gradient(45deg,#ff69b4,#ffd700);
+  color:white;
   transition:.3s;
 }
 
-#yesBtn{
-  background:linear-gradient(45deg,#ff69b4,#d4af37);
-  color:white;
+#no{
+  background:#eee;
 }
 
-#noBtn{
-  background:#e0e0e0;
-  position:relative;
-}
-
-/* TE AMO */
+/* mensaje final */
 #loveMessage{
+  display:none;
   margin-top:20px;
-  font-size:36px;
-  color:#d63384;
+  font-size:26px;
+  color:#ff4d88;
+  animation:pulse 1s infinite;
 }
 
-@keyframes popLove{
-  0%{transform:scale(0); opacity:0;}
-  60%{transform:scale(1.3); opacity:1;}
-  100%{transform:scale(1); opacity:1;}
-}
-
-/* Corazones explosión */
-.love-heart{
-  position:fixed;
-  font-size:22px;
-  animation:floatUp 2s ease-out forwards;
-}
-
-@keyframes floatUp{
-  from{transform:translateY(0) scale(1); opacity:1;}
-  to{transform:translateY(-150px) scale(1.5); opacity:0;}
-}
-
-/* Galería */
-.gallery{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-  border:10px solid #d4af37;
-  border-radius:20px;
-  padding:10px;
-  margin:20px;
-  background:#fffaf3;
-}
-
-.gallery img{
-  width:110px;
-  border-radius:15px;
-}
-
-/* Countdown */
-#countdown{
-  text-align:center;
-  font-size:20px;
-  margin:20px;
-}
-
-/* Mapa */
-#map{
-  height:220px;
-  margin:20px;
-  border-radius:20px;
-  border:3px solid #d4af37;
-}
-
-/* Móvil */
-@media(max-width:600px){
-  .envelope{width:90%;}
-  .letter{font-size:22px;}
-  .buttons button{
-    width:85%;
-    display:block;
-    margin:10px auto;
-  }
-  .gallery img{width:90px;}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+  100%{transform:scale(1)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Cuenta regresiva -->
-<div id="countdown"></div>
-
-<!-- Sobre -->
-<div class="envelope" onclick="this.classList.toggle('open')">
+<div class="envelope">
   <div class="letter">
+    Querido <b>Danielito</b>,<br><br>
 
-Querido Danielito,<br><br>
+    Me encantaría decirte lo mucho que te amo, pero dudo que quepa todo en un solo texto.  
+    Agradezco los hermosos días que hemos compartido y las bellísimas experiencias que hemos tenido juntos.  
 
-Me encantaría decirte lo mucho que te amo,  
-pero dudo que quepa todo en un solo texto.  
-Agradezco los hermosos días que hemos compartido  
-y las bellísimas experiencias que hemos tenido juntos.<br><br>
+    Quiero agradecer a aquel <b>06-07-2023</b> por haber sido el inicio de algo muy lindo.  
+    Siempre estaré feliz de ser tu pareja.  
 
-Quiero agradecer a aquel <b>06-07-2023</b>  
-por haber sido el inicio de algo muy lindo.  
-Siempre estaré feliz de ser tu pareja.<br><br>
+    <br><br>
+    <b>Te amo eternamente.</b> 💖  
 
-<b>Te amo eternamente.</b><br><br>
-
-¿Te gustaría ser mi San Valentín? 💘
-
-<div class="buttons">
-  <button id="yesBtn" onclick="sayYes(event)">SÍ 💖</button>
-  <button id="noBtn" onclick="sayNo(event)">NO 😢</button>
-</div>
-
-<p id="loveMessage"></p>
-
+    <br><br>
+    ¿Te gustaría ser mi San Valentín? 💌
   </div>
+
+  <div class="buttons">
+    <button id="yes">SÍ 💖</button>
+    <button id="no">NO 😅</button>
+  </div>
+
+  <div id="loveMessage">TE AMO 💕</div>
 </div>
-
-<!-- Galería -->
-<div style="text-align:center;">
-<input type="file" multiple accept="image/*" onchange="loadImages(event)">
-</div>
-<div class="gallery" id="gallery"></div>
-
-<!-- Mapa -->
-<div id="map"></div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-// corazones cayendo
+/* corazones cayendo */
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="💖";
   h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=3+Math.random()*5+"s";
+  h.style.animationDuration=3+Math.random()*2+"s";
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),8000);
+  setTimeout(()=>h.remove(),5000);
 },300);
 
-// NO travieso
-function sayNo(e){
-  e.stopPropagation();
-  const no=document.getElementById("noBtn");
-  const yes=document.getElementById("yesBtn");
-  const x=Math.random()*200-100;
-  const y=Math.random()*120-60;
-  no.style.transform=`translate(${x}px,${y}px)`;
-  yes.style.transform="scale(1.4)";
-  yes.innerText="SÍ 💖 (elige este)";
-}
+/* botones */
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const msg=document.getElementById("loveMessage");
 
-// SÍ
-function sayYes(e){
-  e.stopPropagation();
-  const msg=document.getElementById("loveMessage");
-  msg.innerText="TE AMO 💕";
-  msg.style.animation="popLove 1s ease";
-  explodeHearts();
-}
+no.addEventListener("click",()=>{
+  yes.style.transform="scale(1.3)";
+});
 
-// corazones explosión
-function explodeHearts(){
-  for(let i=0;i<25;i++){
-    const h=document.createElement("div");
-    h.className="love-heart";
-    h.innerHTML="💗";
-    h.style.left=Math.random()*100+"vw";
-    h.style.top="70vh";
-    h.style.color=["#ff69b4","#d4af37"][Math.floor(Math.random()*2)];
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),2000);
-  }
-}
-
-// galería
-function loadImages(e){
-  for(let f of e.target.files){
-    const img=document.createElement("img");
-    img.src=URL.createObjectURL(f);
-    document.getElementById("gallery").appendChild(img);
-  }
-}
-
-// countdown
-const target=new Date("2026-02-14");
-setInterval(()=>{
-  const now=new Date();
-  const d=target-now;
-  const days=Math.max(0,Math.floor(d/86400000));
-  document.getElementById("countdown").innerText=
-  "Faltan "+days+" días para nuestro día 💖";
-},1000);
-
-// mapa recuerdos
-const map=L.map('map').setView([19.43,-99.13],12);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-map.on('click',e=>{
-  L.marker(e.latlng).addTo(map)
-   .bindPopup("Nuestro recuerdo 💕").openPopup();
+yes.addEventListener("click",()=>{
+  msg.style.display="block";
+  yes.style.display="none";
+  no.style.display="none";
 });
 </script>
 
 </body>
 </html>
+
